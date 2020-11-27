@@ -1,10 +1,9 @@
 package ua.edu.ucu.smartarr;
 
 import ua.edu.ucu.functions.MyFunction;
-import ua.edu.ucu.functions.MyPredicate;
 
 // Map every element to another object using MyFunction
-public class MapDecorator extends SmartArrayDecorator{
+public class MapDecorator extends SmartArrayDecorator {
     private final MyFunction function;
     private Object[] array;
     public MapDecorator(SmartArray smartArray, MyFunction func) {
@@ -17,7 +16,7 @@ public class MapDecorator extends SmartArrayDecorator{
 
     @Override
     public Object[] toArray() {
-        return this.array;
+        return this.array.clone();
     }
 
     @Override
@@ -33,8 +32,7 @@ public class MapDecorator extends SmartArrayDecorator{
     public Object[] changeElements() {
         Object[] origArray = this.smartArray.toArray();
         Object[] newArray = new Object[origArray.length];
-        int ind = 0;
-        for (int i = 0; i < origArray.length; i++){
+        for (int i = 0; i < origArray.length; i++) {
                 newArray[i] = this.function.apply(origArray[i]);
             }
         return newArray;

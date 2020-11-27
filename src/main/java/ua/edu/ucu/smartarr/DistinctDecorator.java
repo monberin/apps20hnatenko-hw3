@@ -35,7 +35,7 @@ public class DistinctDecorator extends SmartArrayDecorator {
     @Override
     public Object[] toArray() {
 
-        return this.array;
+        return this.array.clone();
     }
 
     @Override
@@ -48,21 +48,5 @@ public class DistinctDecorator extends SmartArrayDecorator {
         return this.array.length;
     }
 
-//    public static Object[] removeGivenElement(Object[] array, Object element) {
-//        int length = array.length;
-//        int i=0;
-//        for(int j=0; j<length; j++)
-//        {
-//            if(array[j]!=element)
-//            {
-//                array[i]=array[j];
-//                i++;
-//            }
-//        }
-//
-//        Object[] newArray = new Object[i+1];
-//        System.arraycopy(array, 0, newArray, 0, newArray.length);
-//        return newArray;
-//    }
 }
 

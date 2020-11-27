@@ -8,7 +8,7 @@ public class FilterDecorator extends SmartArrayDecorator {
     private final MyPredicate predicate;
     private Object[] array;
 
-    public FilterDecorator(SmartArray smartArray,MyPredicate predicat) {
+    public FilterDecorator(SmartArray smartArray, MyPredicate predicat) {
         super(smartArray);
         this.array = smartArray.toArray();
         this.predicate = predicat;
@@ -18,12 +18,13 @@ public class FilterDecorator extends SmartArrayDecorator {
 
     @Override
     public Object[] toArray() {
-        return this.array;
+        return this.array.clone();
     }
 
     @Override
     public String operationDescription() {
-        return "Removes all elements that do not pass the predicate test from the array.";
+        return "Removes all elements that do not pass " +
+                "the predicate test from the array.";
     }
 
     @Override
