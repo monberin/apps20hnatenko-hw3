@@ -36,4 +36,16 @@ class Student {
         return "Student{name=" + name + ", surname=" + surname + ", " + "GPA=" + GPA + ", year=" + year + '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
+        Student student = (Student) obj;
+        return getName().equals(student.getName()) && getSurname().
+                equals(student.getSurname())
+                && getGPA() == student.getGPA() && getYear()
+                == student.getYear();
+    }
+
 }

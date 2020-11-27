@@ -23,8 +23,7 @@ public class FilterDecorator extends SmartArrayDecorator {
 
     @Override
     public String operationDescription() {
-        return "Filter Decorator. Removes all elements that " +
-                "do not pass the predicate test from the array.";
+        return "Removes all elements that do not pass the predicate test from the array.";
     }
 
     @Override

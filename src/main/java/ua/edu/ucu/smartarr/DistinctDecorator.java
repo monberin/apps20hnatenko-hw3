@@ -5,15 +5,30 @@ public class DistinctDecorator extends SmartArrayDecorator {
     private Object[] array;
 
     public DistinctDecorator(SmartArray smartArray) {
+
         super(smartArray);
         this.array = smartArray.toArray();
-        Object[] arr = smartArray.toArray();
-        int i = 0;
-        while (i < arr.length){
-            arr = removeGivenElement(arr, arr[i],i);
-            i += 1;
+        Object[] newArray = new Object[smartArray.size()];
+
+        int finalSize = 0;
+
+        int repeated;
+        for (Object o : array) {
+            repeated = 0;
+            for (Object obj : newArray) {
+                if (o.equals(obj)) {
+                    repeated += 1;
+                    break;
+                }
+            }
+            if (repeated == 0) {
+                newArray[finalSize++] = o;
+            }
         }
-        this.array = arr;
+
+        Object[] finalArray = new Object[finalSize];
+        System.arraycopy(newArray, 0, finalArray, 0, finalSize);
+        this.array = finalArray;
 
     }
 
@@ -25,7 +40,7 @@ public class DistinctDecorator extends SmartArrayDecorator {
 
     @Override
     public String operationDescription() {
-        return "Distinct Decorator. Removes all repeating elements from the array.";
+        return "Removes all repeating elements from the array.";
     }
 
     @Override
@@ -33,16 +48,21 @@ public class DistinctDecorator extends SmartArrayDecorator {
         return this.array.length;
     }
 
-    public static Object[] removeGivenElement(Object[] array, Object element, int ind) {
-        int index = 0;
-        for (int i = ind; i < array.length; i++) {
-            if (array[i].equals(element)) {
-                array[index++] = array[i];
-            }
-        }
-        Object[] newArray = new Object[index];
-        System.arraycopy(array, 0, newArray, 0, index + 1);
-        return newArray;
-    }
+//    public static Object[] removeGivenElement(Object[] array, Object element) {
+//        int length = array.length;
+//        int i=0;
+//        for(int j=0; j<length; j++)
+//        {
+//            if(array[j]!=element)
+//            {
+//                array[i]=array[j];
+//                i++;
+//            }
+//        }
+//
+//        Object[] newArray = new Object[i+1];
+//        System.arraycopy(array, 0, newArray, 0, newArray.length);
+//        return newArray;
+//    }
 }
 
